@@ -1,3 +1,4 @@
+########## Miniconda installation ##########
 # FROM --platform=linux/x86_64 mcr.microsoft.com/devcontainers/miniconda:1-3
 
 # # Copy environment.yml (if found) to a temp location so we update the environment. Also
@@ -15,6 +16,7 @@
 # # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 # #     && apt-get -y install --no-install-recommends <your-package-list-here>
 
+########## Python and Poetry installation ##########
 # Use the x86_64 platform 
 FROM --platform=linux/x86_64 mcr.microsoft.com/devcontainers/base:jammy
 # FROM mcr.microsoft.com/devcontainers/base:jammy 

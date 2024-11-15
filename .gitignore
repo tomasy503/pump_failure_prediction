@@ -166,3 +166,5 @@ data/
 
 # Azure Config
 .cloud/
+
+.DS_Store

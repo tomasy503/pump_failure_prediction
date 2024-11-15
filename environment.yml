@@ -15,4 +15,3 @@ dependencies:
     - fastapi
     - uvicorn
     - azureml-core
-    - azureml-defaults

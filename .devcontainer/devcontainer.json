@@ -20,5 +20,9 @@
 	// "customizations": {},
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+	"remoteUser": "vscode"
+	"features": {
+		"git": "latest",
+		"azure-cli": "latest"
+	}
 }

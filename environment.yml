@@ -1,6 +1,7 @@
 name: pump_failure_env
 channels:
   - defaults
+  - conda-forge
 dependencies:
   - python
   - pip
@@ -13,3 +14,5 @@ dependencies:
   - pip:
     - fastapi
     - uvicorn
+    - azureml-core
+    - azureml-defaults

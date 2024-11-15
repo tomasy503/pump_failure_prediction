@@ -14,6 +14,7 @@ azureml-defaults = "^1.58.0"
 scikit-learn = "^1.5.2"
 matplotlib = "^3.9.2"
 seaborn = "^0.13.2"
+azureml-mlflow = "^1.58.0.post3"
 
 
 [build-system]

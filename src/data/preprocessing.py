@@ -1,8 +1,7 @@
 # import libraries
 import numpy as np
 import pandas as pd
-
-from src.utils.preprocessing_functions import preprocess_data
+from preprocessing_functions import preprocess_data
 
 if __name__ == "__main__":
     # load data

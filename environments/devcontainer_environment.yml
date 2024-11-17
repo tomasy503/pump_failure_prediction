@@ -1,17 +1,18 @@
 name: pump_failure_env
 channels:
-  - defaults
   - conda-forge
 dependencies:
-  - python
-  - pip
+  - python=3.9
   - numpy
   - pandas
   - scikit-learn
   - matplotlib
   - seaborn
   - flask
+  - pip
   - pip:
+    - feature_engine
     - fastapi
     - uvicorn
+    - azureml-defaults
     - azureml-core

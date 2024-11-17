@@ -162,7 +162,7 @@ cython_debug/
 #.idea/
 
 # Data files
-data/
+/data/
 
 # Azure Config
 .cloud/

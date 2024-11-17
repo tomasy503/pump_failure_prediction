@@ -3,15 +3,16 @@ channels:
   - conda-forge
 dependencies:
   - python=3.9
+  - ipykernel
   - numpy
   - pandas
   - scikit-learn
   - matplotlib
   - seaborn
   - flask
+  - feature-engine
   - pip
   - pip:
-    - feature_engine
     - fastapi
     - uvicorn
     - azureml-defaults

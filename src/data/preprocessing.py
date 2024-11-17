@@ -1,5 +1,4 @@
 # import libraries
-import numpy as np
 import pandas as pd
 from preprocessing_functions import preprocess_data
 

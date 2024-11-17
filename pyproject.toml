@@ -17,6 +17,7 @@ seaborn = "^0.13.2"
 azureml-mlflow = "^1.58.0.post3"
 plotly = "^5.24.1"
 nbformat = "^5.10.4"
+setuptools = "^75.5.0"
 
 
 [tool.poetry.group.dev.dependencies]

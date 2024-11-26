@@ -10,13 +10,13 @@ dependencies:
   - matplotlib
   - seaborn
   - flask
-  - feature-engine
   - scikit-optimize
   - lightgbm
   - pip
   - pip:
     - fastapi
     - uvicorn
+    - feature-engine
     - azureml-defaults
     - azureml-core
     - azureml-pipeline-steps

@@ -25,18 +25,7 @@
 	"postCreateCommand": "conda env create -f environments/devcontainer_environment.yml && echo 'export PYTHONPATH=/workspaces/pump_failure_detection' >> ~/.bashrc && echo 'export PYTHONPATH=/workspaces/pump_failure_detection' >> ~/.zshrc",
 
 	// Configure tool-specific properties.
-	"customizations": {
-		"vscode": {
-			"settings": {
-				"python.envFile": "${workspaceFolder}/.env",
-				"jupyter.notebookFileRoot": "${workspaceFolder}"
-			},
-			"extensions": [
-				"ms-python.python",
-				"ms-toolsai.jupyter"
-			]
-		}
-	},
+	// "customizations": {},
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"

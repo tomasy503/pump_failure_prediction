@@ -6,26 +6,38 @@
 		"context": "..",
 		"dockerfile": "Dockerfile"
 	},
+	
+	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
 		"ghcr.io/devcontainers/features/azure-cli:1": {},
 		"ghcr.io/devcontainers/features/git:1": {}
-	}
+	},
 
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
+	// Environment variables to set in the container.
+	"environment": {
+		"PYTHONPATH": "/workspaces/pump_failure_detection"
+	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "conda env create -f environments/devcontainer_environment.yml",
+	"postCreateCommand": "conda env create -f environments/devcontainer_environment.yml && echo 'export PYTHONPATH=/workspaces/pump_failure_detection' >> ~/.bashrc && echo 'export PYTHONPATH=/workspaces/pump_failure_detection' >> ~/.zshrc",
 
 	// Configure tool-specific properties.
-	// "customizations": {},
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"python.envFile": "${workspaceFolder}/.env",
+				"jupyter.notebookFileRoot": "${workspaceFolder}"
+			},
+			"extensions": [
+				"ms-python.python",
+				"ms-toolsai.jupyter"
+			]
+		}
+	},
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
-	"environment": {
-		"PYTHONPATH": "/workspaces/pump_failure_detection"
-	},
 }

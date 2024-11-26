@@ -17,4 +17,4 @@ if __name__ == "__main__":
     df = preprocess_data(df)
 
     # save data
-    df.to_csv("processed/preprocessed_data.csv", index=False)
+    df.to_csv(data_path + "processed/preprocessed_data.csv", index=False)

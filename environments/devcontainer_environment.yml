@@ -11,9 +11,13 @@ dependencies:
   - seaborn
   - flask
   - feature-engine
+  - scikit-optimize
+  - lightgbm
   - pip
   - pip:
     - fastapi
     - uvicorn
     - azureml-defaults
     - azureml-core
+    - azureml-pipeline-steps
+    - azure-storage-blob

@@ -9,7 +9,7 @@ from azureml.data.data_reference import DataReference
 from azureml.pipeline.core import Pipeline, PipelineData, PipelineParameter
 from azureml.pipeline.steps import PythonScriptStep
 
-from packages.azureml_functions import get_ws
+from src.utils.azureml_functions import get_ws
 
 
 def get_pipeline_steps(ws):
@@ -19,7 +19,7 @@ def get_pipeline_steps(ws):
     df = ws.datasets.get("pump_sensor")
 
     preprocessing_env = "environments/preprocessing_environment.yml"
-    location_steps = "deployment/steps/"
+    location_preprocessing = "src/data/"
     pipeline_preprocessing_run_config = RunConfiguration()
 
     env_prep = Environment.from_conda_specification(
@@ -34,8 +34,8 @@ def get_pipeline_steps(ws):
 
     preprocessing_step = PythonScriptStep(
         name="Preprocess Data",
-        source_directory=location_steps,
-        script_name="preprocessing.py",
+        source_directory=location_preprocessing,
+        script_name="run_preprocessing.py",
         inputs=[df.as_named_input("pump_sensor")],
         outputs=[train_folder],
         arguments=["--train_folder", train_folder],
@@ -48,6 +48,7 @@ def get_pipeline_steps(ws):
 
     # Step 2
     training_env = "environments/training_environment.yml"
+    location_training = "src/training/"
     pipeline_training_run_config = RunConfiguration()
 
     env_prep = Environment.from_conda_specification(
@@ -63,8 +64,8 @@ def get_pipeline_steps(ws):
 
     train_step = PythonScriptStep(
         name="Training",
-        source_directory=location_steps,
-        script_name="training.py",
+        source_directory=location_training,
+        script_name="run_training.py",
         inputs=[train_folder],
         outputs=[prediction_folder],
         arguments=["--train_folder", train_folder,

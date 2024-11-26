@@ -6,9 +6,10 @@ from lightgbm import LGBMClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 
-from packages.training_functions import (evaluate_preds, model_optimization,
-                                         plot_predictions, split_data,
-                                         train_model)
+from src.training.training_functions import (evaluate_preds,
+                                             model_optimization,
+                                             plot_predictions, split_data,
+                                             train_model)
 
 if __name__ == "__main__":
     workspace_dir = os.environ.get(

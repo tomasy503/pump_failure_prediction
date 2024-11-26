@@ -5,7 +5,7 @@ import os
 import pandas as pd
 from azureml.core import Run
 
-from src.utils.preprocessing_functions import preprocess_data
+from packages.preprocessing_functions import preprocess_data
 
 if __name__ == "__main__":
     # Get parameters

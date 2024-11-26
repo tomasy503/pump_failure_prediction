@@ -8,9 +8,9 @@ from lightgbm import LGBMClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 
-from src.utils.training_functions import (evaluate_preds, model_optimization,
-                                          plot_predictions, split_data,
-                                          train_model)
+from packages.training_functions import (evaluate_preds, model_optimization,
+                                         plot_predictions, split_data,
+                                         train_model)
 
 if __name__ == "__main__":
     # Get parameters

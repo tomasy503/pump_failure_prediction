@@ -9,7 +9,7 @@ from azureml.data.data_reference import DataReference
 from azureml.pipeline.core import Pipeline, PipelineData, PipelineParameter
 from azureml.pipeline.steps import PythonScriptStep
 
-from src.utils.azureml_functions import get_ws
+from packages.azureml_functions import get_ws
 
 
 def get_pipeline_steps(ws):

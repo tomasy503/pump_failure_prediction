@@ -1,6 +1,7 @@
 # import libraries
 import pandas as pd
-from preprocessing_functions import preprocess_data
+
+from src.utils.preprocessing_functions import preprocess_data
 
 if __name__ == "__main__":
     # load data

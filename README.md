@@ -9,20 +9,17 @@ This project aims to demonstrate how sensor data can provide actionable insights
 Water pump systems are critical components of a company’s infrastructure, especially in industries that rely heavily on consistent water supply. The primary goals of this project are:
 1. **Failure Prediction**: Detect pump failures in advance to prevent disruptions.
 2. **Operational Efficiency**: Improve reliability by identifying key failure patterns and trends in sensor data.
-3. **Value Demonstration**: Convince stakeholders of the benefits of working with sensor data for predictive analytics.
 
 ---
 
 ## **Dataset**
 The dataset contains time-series sensor readings for a water pump system, including both operational and failure data. The key features include:
-- Sensor readings such as temperature, pressure, vibration levels, and flow rates.
 - Time-series timestamps for capturing trends.
 - Labels indicating normal operations and pump failures.
 
 The dataset will serve as the basis for:
 1. Understanding trends and patterns.
 2. Building and validating machine learning models.
-3. Demonstrating predictive maintenance capabilities.
 
 ---
 
@@ -43,14 +40,14 @@ This project will be tackled using an end-to-end data science workflow, as outli
   - Handle missing or inconsistent data.
   - Feature engineering to create new, meaningful attributes (e.g., rolling averages, deltas).
   - Encode categorical variables and scale numerical ones.
-  - Split the data into training, validation, and testing sets.
+  - Split the data into training, and testing sets.
 
 ---
 
 ### **3. Model Development**
 - **Goal**: Develop machine learning models to predict pump failures.
 - **Actions**:
-  - Train multiple models (e.g., Random Forest, Gradient Boosting, Neural Networks).
+  - Train multiple models (e.g., Random Forest, Logistic Regression).
   - Use performance metrics such as precision, recall, F1-score, and ROC-AUC to evaluate models.
   - Optimize hyperparameters using grid search or Bayesian optimization.
 
@@ -59,9 +56,9 @@ This project will be tackled using an end-to-end data science workflow, as outli
 ### **4. Model Deployment**
 - **Goal**: Deploy the predictive model to showcase real-time operational feasibility.
 - **Actions**:
-  - Develop a REST API using Flask/FastAPI for serving the model.
+  - Develop a Pipeline for cloud deployment in Azure Machine Learning.
   - Containerize the application using Docker for portability.
-  - Integrate monitoring tools to track model performance in production.
+  - Develop a REST API using Flask/FastAPI for serving the model.
 
 ---
 
@@ -76,17 +73,18 @@ This project will be tackled using an end-to-end data science workflow, as outli
 ## **Expected Deliverables**
 1. **Trained Predictive Model**: A machine learning model capable of identifying pump failures in advance.
 2. **Interactive Dashboard**: A Tableau-based dashboard showcasing key trends and model outputs.
-3. **Deployed API**: A REST API serving real-time predictions.
+3. **Deployed Pipeline**: A Pipeline Endpoint to run the model in Azure Machine Learning Environment.
+4. **Deployed API**: A REST API serving real-time predictions.
 4. **Comprehensive Reports**: Business-focused insights and technical documentation.
 
 ---
 
 ## **Technologies and Tools**
 - **Programming Languages**: Python
-- **Libraries**: Pandas, NumPy, Scikit-learn, TensorFlow/PyTorch, Matplotlib, Seaborn
-- **Deployment**: Flask/FastAPI, Docker, Kubernetes
+- **Libraries**: Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn
+- **Deployment**: Flask/FastAPI, Docker, Azure Machine Learning
 - **Visualization**: Tableau
-- **CI/CD**: GitHub Actions, Jenkins
+- **CI/CD**: GitHub Actions
 - **Version Control**: Git
 
 ---

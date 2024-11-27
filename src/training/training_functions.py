@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import pandas as pd
-from lightgbm import LGBMClassifier
 # Metrics
 from sklearn.metrics import (accuracy_score, classification_report, f1_score,
                              precision_score, recall_score, roc_auc_score)
@@ -117,21 +116,43 @@ def model_optimization(model, train_data, train_target, test_data, test_target):
     #     'reg_alpha': Real(0.0001, 10.0, 'log-uniform'),
     # }
 
+    # Define search spaces for Bayesian optimization for LightGBM
+    # search_spaces = {
+    #     'num_leaves': Integer(5, 256),
+    #     'max_depth': Integer(3, 12),
+    #     'n_estimators': Integer(50, 300),
+    #     'learning_rate': Real(0.01, 0.3),
+    #     'feature_fraction': Real(0.5, 0.9),
+    #     'bagging_fraction': Real(0.6, 0.9),
+    #     'min_split_gain': Real(0.0, 0.1),
+    #     'min_child_weight': Integer(1, 30),
+    #     'reg_lambda': Real(1e-3, 10.0, 'log-uniform'),
+    #     'reg_alpha': Real(1e-3, 10.0, 'log-uniform'),
+    # }
+
+    # Define search spaces for Bayesian optimization for XGBoost
     search_spaces = {
-        'num_leaves': Integer(5, 256),
-        'max_depth': Integer(3, 12),
         'n_estimators': Integer(50, 300),
+        'max_depth': Integer(3, 12),
         'learning_rate': Real(0.01, 0.3),
-        'feature_fraction': Real(0.5, 0.9),
-        'bagging_fraction': Real(0.6, 0.9),
-        'min_split_gain': Real(0.0, 0.1),
+        'subsample': Real(0.5, 0.9),
+        'colsample_bytree': Real(0.5, 0.9),
+        'colsample_bylevel': Real(0.5, 0.9),
         'min_child_weight': Integer(1, 30),
         'reg_lambda': Real(1e-3, 10.0, 'log-uniform'),
         'reg_alpha': Real(1e-3, 10.0, 'log-uniform'),
     }
 
+    # bayes_search = BayesSearchCV(
+    #     model, search_spaces, n_iter=50, cv=5)
+
     bayes_search = BayesSearchCV(
-        model, search_spaces, n_iter=50, cv=5)
+        estimator=model,
+        search_spaces=search_spaces,
+        scoring='roc_auc',
+        cv=5,
+        n_iter=50
+    )
 
     bayes_search.fit(train_data, train_target)
 

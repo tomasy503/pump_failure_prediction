@@ -61,15 +61,16 @@ def get_pipeline_steps(ws):
         workspace=ws, name="memory-optimized")
 
     prediction_folder = PipelineData("prediction_folder")
+    model_output = PipelineData("model_output")
 
     train_step = PythonScriptStep(
         name="Training",
         source_directory=location_training,
         script_name="run_training.py",
         inputs=[train_folder],
-        outputs=[prediction_folder],
-        arguments=["--train_folder", train_folder,
-                   "--prediction_folder", prediction_folder],
+        outputs=[prediction_folder, model_output],
+        arguments=["--train_folder", train_folder, "--prediction_folder",
+                   prediction_folder, "--model_output", model_output],
         compute_target=training_cluster,
         runconfig=pipeline_training_run_config,
         allow_reuse=True,
@@ -89,7 +90,6 @@ if __name__ == "__main__":
     print("Pipeline is built.")
 
     # Create an experiment and run the pipeline
-    # repo_shorthand = Repository('.').head.shorthand
     repo_shorthand = "train"
     name = repo_shorthand + "_" + PIPELINE_NAME  # branch name
     name = name.replace("/", "_")
@@ -98,32 +98,3 @@ if __name__ == "__main__":
     pipeline_run = experiment.submit(pipeline)
     print("Pipeline submitted for execution.")
     pipeline_result = pipeline_run.wait_for_completion(show_output=True)
-
-
-# if __name__ == "__main__":
-#     PIPELINE_NAME = "water_pump_simulation"
-
-#     ws = get_ws("train")
-#     # Get the default datastore
-#     datastore = ws.get_default_datastore()
-
-#     pipeline_runs = []
-
-#     for filename in file_names:
-#         # date_string = filename[18:26]
-
-#         pipeline_steps = get_pipeline_steps(ws)
-
-#         pipeline = Pipeline(workspace=ws, steps=pipeline_steps)
-#         print("Pipeline is built.")
-
-#         name = f"ravago-train_{PIPELINE_NAME}"
-
-#         experiment = Experiment(workspace=ws, name=name)
-#         pipeline_run = experiment.submit(pipeline)
-#         print("Pipeline submitted for execution.")
-#         pipeline_runs.append(pipeline_run)
-#         # pipeline_result = pipeline_run.wait_for_completion(show_output=True)
-#         # Wait for all pipeline runs to complete
-#     for run in pipeline_runs:
-#         run.wait_for_completion(show_output=True)

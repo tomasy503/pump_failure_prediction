@@ -1,9 +1,12 @@
 # import libraries
 import argparse
 import os
+import pickle
+import shutil
 
 import pandas as pd
 from azureml.core import Run
+from azureml.core.model import Model
 from lightgbm import LGBMClassifier
 from sklearn.ensemble import RandomForestClassifier, VotingClassifier
 from sklearn.linear_model import LogisticRegression
@@ -20,10 +23,12 @@ if __name__ == "__main__":
     parser.add_argument("--train_folder", type=str, dest="train_folder")
     parser.add_argument("--prediction_folder", type=str,
                         dest="prediction_folder")
+    parser.add_argument("--model_output", type=str, dest="model_output")
 
     args = parser.parse_args()
 
     os.makedirs(args.prediction_folder, exist_ok=True)
+    os.makedirs(args.model_output, exist_ok=True)
 
     df = pd.read_csv("{}/df_for_training.csv".format(args.train_folder))
 
@@ -70,7 +75,7 @@ if __name__ == "__main__":
                               max_depth=3, min_child_weight=23, n_estimators=50, reg_alpha=10.0, reg_lambda=1.4144394477389288, subsample=0.5))
     ]
 
-    # # Use the voting classifier
+    # Use the voting classifier
     voting_clf = VotingClassifier(
         estimators=models, voting='soft', weights=[1, 2])
 
@@ -83,3 +88,23 @@ if __name__ == "__main__":
 
     test_data.to_csv(os.path.join(args.prediction_folder,
                      "predictions.csv"), index=False)
+
+    ####################### SAVE MODEL #########################
+    # Save the model
+    model_name = "water_supply_model.pkl"
+
+    pickle.dump(voting_clf, open(
+        "{}/{}".format(args.model_output, model_name), "wb"))
+
+    shutil.copyfile("{}/{}".format(args.model_output,
+                    "water_supply_model.pkl"), "outputs/water_supply_model.pkl")
+
+    run.upload_file("outputs/water_supply_model.pkl",
+                    "outputs/water_supply_model.pkl")
+
+    run.register_model(
+        model_path="outputs/water_supply_model.pkl",
+        model_name=model_name,
+        tags={"model_type": "LightGBM", "project": "Pump Failure Detection"},
+        description="LightGBM model for pump failure prediction"
+    )
